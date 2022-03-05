@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
     QBL[8] = Eigen::Quaterniond( 0.00124, 0.00195, -0.00380, 0.99999);
     QBL[9] = Eigen::Quaterniond( 0.00153, 0.00377, -0.00695, 0.99997);
     QBL[10] = Eigen::Quaterniond(0.00076, 0.00107, -0.00289, 0.99999);
-    // 四元数转欧拉角1
+    // 四元数转欧拉角
     for (int i = 0; i < 11; ++i)
     {
         temp_eulur[i] = ToEulur(QBL[i]);
