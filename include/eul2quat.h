@@ -10,10 +10,9 @@ inline Eigen::Quaterniond ToEigen(float *eulur)
         return q;
 }
 
-inline Eigen::Vector3d ToEulur(const Eigen::Quaterniond &q) // q(w,x,y,z)
+inline Eigen::Vector3d ToEulur(const Eigen::Quaterniond &q) // q(w,x,y,z)     底层用的是atan2  输出角度范围-180度～+180度
 {
         Eigen::Vector3d eul = q.matrix().eulerAngles(2, 1, 0); // yawl pitch roll
         return eul;
 }
-
 #endif

@@ -1,22 +1,7 @@
 #include "iostream"
-// #include <eigen3/Eigen/Dense>
 #include "/home/zh/catkin_ws/src/eul2quat/include/eul2quat.h"
+#include <cmath>
 using namespace std;
-
-// inline Eigen::Quaterniond ToEigen(float *eulur)
-// {
-//         Eigen::Matrix3d matrix_tmp;
-//         matrix_tmp = (Eigen::AngleAxisd(eulur[0], Eigen::Vector3d::UnitZ()) * Eigen::AngleAxisd(eulur[1], Eigen::Vector3d::UnitY()) * Eigen::AngleAxisd(eulur[2], Eigen::Vector3d::UnitX())).toRotationMatrix();
-//         Eigen::Quaterniond q(matrix_tmp);
-//         return q;
-// }
-
-// inline Eigen::Vector3d ToEulur(const Eigen::Quaterniond &q) // q(w,x,y,z)
-// {
-//         Eigen::Vector3d eul = q.matrix().eulerAngles(2, 1, 0); // yawl pitch roll
-//         return eul;
-// }
-
 Eigen::Quaterniond QBL[15];
 Eigen::Vector3d temp_eulur[15];
 
@@ -41,11 +26,16 @@ int main(int argc, char const *argv[])
         for (int i = 0; i < 15; ++i)
         {
                 temp_eulur[i] = ToEulur(QBL[i]);
-                cout << i << " " << temp_eulur[i][0] << " " << temp_eulur[i][1] << " " << temp_eulur[i][2] << endl;
+                cout << i << " " << 57.3 * temp_eulur[i][0] << " " << 57.3 * temp_eulur[i][1] << " " << 57.3 * temp_eulur[i][2] << endl;
         }
         // 欧拉角转四元数
         float eul[3] = {2.40154, 0.00646754, 0.00306881};
         cout << ToEigen(eul) << endl;
+
+        cout << "atan(-1.0 / -1.0) = " << 57.3 * atan(-1.0 / -1.0) << endl;
+        cout << "atan(-1.0 / 1.0) = " << 57.3 * atan(-1.0 / 1.0) << endl;
+        cout << "atan2(-1.0, -1.0) = " << 57.3 * atan2(-1.0, -1.0) << endl;
+        cout << "atan2(-1.0, 1.0) = " << 57.3 * atan2(-1.0, 1.0) << endl;
 
         return 0;
 }
